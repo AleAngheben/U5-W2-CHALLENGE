@@ -44,7 +44,6 @@ public class EmployeeController {
         if (validation.hasErrors()){
             throw new BadRequestException(validation.getAllErrors());
         }
-        Employee newEmployee = employeeService.save(employee);
 
         return this.employeeService.save(employee);
     }
