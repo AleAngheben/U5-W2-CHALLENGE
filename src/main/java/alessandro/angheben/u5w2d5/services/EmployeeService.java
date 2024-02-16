@@ -31,14 +31,6 @@ public class EmployeeService {
         return employeeDAO.findAll(pageable);
     }
 
-//    public Page<Employee> getEmployees(String name, String surname, int page, int size, String orderBy) {
-//        Pageable pageable = PageRequest.of(page, size, Sort.by(orderBy));
-//        if (name == null && surname == null) return employeeDAO.findAll(pageable);
-//        if (name == null) return employeeDAO.findByLastName(surname, pageable);
-//        if (surname == null) return employeeDAO.findByFirstName(name, pageable);
-//        return employeeDAO.findByFirstNameAndLastName(name, surname, pageable);
-//    }
-
     public Employee save(NewEmployeeDTO employee) throws IOException{
 
         employeeDAO.findByEmail(employee.email()).ifPresent(employee1 -> {
@@ -61,13 +53,6 @@ public class EmployeeService {
         return employeeDAO.findById(id).orElseThrow(() -> new NotFoundException(id));
     }
 
-    public Employee uploadEmployeeImg(UUID id, MultipartFile file) throws IOException {
-        Employee found = this.findById(id);
-        String profilePicURL = (String) cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap()).get("url");
-        found.setEmployeeImg(profilePicURL);
-        return employeeDAO.save(found);
-    }
-
     public Employee findByIdAndUpdate(UUID id, NewEmployeeDTO body) {
 
         Employee found = this.findById(id);
@@ -83,8 +68,8 @@ public class EmployeeService {
         employeeDAO.delete(found);
     }
 
-    //immagine
 
+//PER CARICARE L'IMMAGINE AD UN DETERMINATO EMPLOYEE
     public Employee uploadProfilePicture(UUID id, MultipartFile file) throws IOException{
         Employee found = this.findById(id);
         String profilePicURL = (String) cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap()).get("url");

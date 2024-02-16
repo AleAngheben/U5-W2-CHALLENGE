@@ -41,6 +41,7 @@ public class DeviceService {
         return deviceDAO.findById(id).orElseThrow(() -> new NotFoundException(id));
     }
 
+    //GLI PASSO UN DTO CHE CHE SI RIFERISCE A UUID PER EMPLOYEE (SERVE UNE PROPR UNIVOCA IN MODO DA PASSARE UN DET EMPLYEE AL DEVICE)
     public Device setEmployeeOnDevice(UUID deviceId, IdEmployeeDTO employeeId) {
         Employee employee = employeeService.findById(employeeId.id());
         Device found = this.findById(deviceId);

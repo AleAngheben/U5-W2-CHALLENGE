@@ -41,6 +41,7 @@ public class DeviceController {
         return this.deviceService.saveDevice(newDeviceDTO);
     }
 
+    //ID VIENE SOSTITUITO DA L'ID DEL DEVICE AL QUALE VOGLIO ASSEGNARE UN EMPLOYEE, L'EMPLOYEE VIENE PASSATO TRAMITE REQ BODY USANDO IL SUO UUID
     @PatchMapping("/{id}/setEmployee")
     @ResponseStatus(HttpStatus.OK)
     public Device setUser(@PathVariable UUID id, @RequestBody IdEmployeeDTO employeeId, BindingResult validation) {
