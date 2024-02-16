@@ -23,5 +23,5 @@ public class Device {
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
-    
+
 }

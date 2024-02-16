@@ -23,6 +23,7 @@ public class Employee {
     @Column(name = "last_name")
     private String lastName;
     private String email;
+    private String employeeImg;
 
 
     public Employee(String username, String firstName, String lastName, String email) {
