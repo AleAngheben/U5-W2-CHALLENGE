@@ -4,6 +4,7 @@ import alessandro.angheben.u5w2d5.dao.EmployeeDAO;
 import alessandro.angheben.u5w2d5.entities.Employee;
 import alessandro.angheben.u5w2d5.exceptions.BadRequestException;
 import alessandro.angheben.u5w2d5.exceptions.NotFoundException;
+import alessandro.angheben.u5w2d5.exceptions.UnauthorizedException;
 import alessandro.angheben.u5w2d5.payloads.NewEmployeeDTO;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
@@ -76,5 +77,10 @@ public class EmployeeService {
         found.setEmployeeImg(profilePicURL);
         return employeeDAO.save(found);
     }
+
+    public Employee findByEmail(String email) {
+        return employeeDAO.findByEmail(email).orElseThrow(()-> new UnauthorizedException("not found sium"));
+    }
+
 
 }

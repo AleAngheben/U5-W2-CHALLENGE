@@ -37,4 +37,13 @@ public class ExceptionsHandler {
         return new ErrorsPayload("Errore generico", LocalDateTime.now());
     }
 
+
+    @ExceptionHandler(UnauthorizedException.class)
+    // Con questa annotazione indico che questo metodo gestirà le eccezioni di tipo UnauthorizedException
+    @ResponseStatus(HttpStatus.UNAUTHORIZED) // 401
+    public ErrorsPayload handleUnauthorized(UnauthorizedException ex) {
+        return new ErrorsPayload(ex.getMessage(), LocalDateTime.now());
+    }
+
+
 }
